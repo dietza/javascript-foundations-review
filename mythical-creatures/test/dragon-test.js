@@ -9,18 +9,21 @@ describe('Dragon', function() {
 
   it('should instantiate our good friend, Dragon', function() {
     var smaug = new Dragon();
+    
     assert.instanceOf(smaug, Dragon);
   });
   
   it('should have a name', function() {
     var dragon1 = new Dragon('Jeff');
     var dragon2 = new Dragon('Louisa');
+
     assert.equal(dragon1.name, 'Jeff');
     assert.equal(dragon2.name, 'Louisa');
   });
   
   it('should have a rider', function() {
     var dragon = new Dragon('Saphira', 'Eragon');
+
     assert.equal(dragon.name, 'Saphira');
     assert.equal(dragon.rider, 'Eragon');
   });
