@@ -7,24 +7,16 @@ class Pirate{
     this.robberies = 0
   }
 
-
-  // outer function state: how many times / if it's been called
-  // 
-
   robShip() {
-      if (this.robberies < 5) {
-console.log('COUNTER >>>>> ', this.robberies)
-        this.robberies ++
-        this.booty += 100
-console.log('SUCCESSFUL ROBBERY! >>>>> ', this.robberies)
-            return 'YAARRR!';
-      } else if (this.robberies >= 5) {
-console.log('COUNTER >>>>> ', this.robberies)
-        this.robberies ++
-        this.cursed = true
-console.log('CURSED! >>>>> ', this.robberies)
-        return 'ARG! I\'ve been cursed!';
-      }
+    if (this.robberies < 5) {
+      this.robberies ++
+      this.booty += 100
+      return 'YAARRR!';
+    } else if (this.robberies >= 5) {
+      this.robberies ++
+      this.cursed = true
+      return 'ARG! I\'ve been cursed!';
+    }
   }
 
   liftCurse() {
