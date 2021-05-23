@@ -1,5 +1,5 @@
-var Person = require('./person');
-var Statue = require('./statue');
+const Person = require('./person');
+const Statue = require('./statue');
 
 class Medusa{
   constructor(name, statues) {
