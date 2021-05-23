@@ -10,10 +10,9 @@ class Centaur{
 
   shootBow() {
     this.crankyCounter ++
-    console.log('CRANKY COUNTER >>>> ', this.crankyCounter)
-    if (this.crankyCounter < 3) {
+    if ((this.crankyCounter < 3) && !this.layingDown) {
       return 'Twang!!!';
-    } else if (this.crankyCounter >= 3) {
+    } else if ((this.crankyCounter >= 3) || this.layingDown) {
       this.cranky = true
       return 'NO!';
     }
@@ -21,17 +20,20 @@ class Centaur{
 
   run() {
     this.crankyCounter ++
-    console.log('CRANKY COUNTER >>>> ', this.crankyCounter)
-    if (this.crankyCounter < 3) {
+    if ((this.crankyCounter < 3) && !this.layingDown) {
       return 'Clop clop clop clop!!!';
-    } else if (this.crankyCounter >= 3) {
+    } else if ((this.crankyCounter >= 3) || this.layingDown) {
       this.cranky = true
       return 'NO!';
     }
   }
 
   sleep() {
-    if (this.standing) {
+    if (this.layingDown) {
+      this.crankyCounter = 0
+      this.cranky = false
+      return 'ZZZZ';
+    } else if (this.standing) {
       return 'NO!';
     }
   }
@@ -44,6 +46,16 @@ class Centaur{
   standUp() {
     this.standing = true
     this.layingDown = false
+  }
+
+  drinkPotion() {
+    if (this.standing) {
+      this.crankyCounter = 0
+      this.cranky = false
+      return 'Wow, that stuff makes me feel brand new!';
+    } else if (!this.standing) {
+      return 'Not while I\'m laying down!';
+    }
   }
 
 }
