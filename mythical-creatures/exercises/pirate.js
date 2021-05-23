@@ -4,22 +4,31 @@ class Pirate{
     this.job = job,
     this.cursed = false,
     this.booty = 0,
+    this.robberies = 0
   }
 
   robShip() {
-    counter += 1
-
-    console.log('COUNTER >>>>> ', counter)
-
-    if (counter < 5) {
+    if (this.robberies < 5) {
+      this.robberies ++
       this.booty += 100
       return 'YAARRR!';
-    } else if (counter >= 5) {
+    } else if (this.robberies >= 5) {
+      this.robberies ++
       this.cursed = true
       return 'ARG! I\'ve been cursed!';
     }
   }
 
+  liftCurse() {
+    if (this.cursed) {
+      this.booty -= 300
+      this.cursed = false
+      return 'Your curse has been lifted!';
+    } else if (!this.cursed) {
+      return 'You don\'t need to lift a curse!';
+    }
+  }
+  
 }
 
 module.exports = Pirate;

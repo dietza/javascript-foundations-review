@@ -65,36 +65,26 @@ describe('Pirate', function() {
   it('should get cursed after robbing 5 ships instead of getting money', function() {
     var pirate = new Pirate('Robbie');
 
-          console.log('PIRATE >>>>> ', pirate)
+    pirate.robShip();
 
     pirate.robShip();
-    console.log('PIRATE >>>>> ', pirate)
 
     pirate.robShip();
-    console.log('PIRATE >>>>> ', pirate)
 
     pirate.robShip();
-    console.log('PIRATE >>>>> ', pirate)
 
     pirate.robShip();
-    console.log('PIRATE >>>>> ', pirate)
-
-    pirate.robShip();
-    console.log('PIRATE >>>>> ', pirate)
-
 
     assert.equal(pirate.booty, 500);
 
     pirate.robShip();
-    console.log('CURSE this PIRATE >>>>> ', pirate)
-
 
     assert.equal(pirate.booty, 500);
     assert.equal(pirate.cursed, true);
     assert.equal(pirate.robShip(), 'ARG! I\'ve been cursed!');
   });
 
-  it.skip('should be able to lift curse for 300 booty', function() {
+  it('should be able to lift curse for 300 booty', function() {
     var pirate = new Pirate('Scott');
 
     function timeTravel() {
@@ -110,7 +100,7 @@ describe('Pirate', function() {
     assert.equal(pirate.cursed, false);
   })
 
-  it.skip('should only be able to lift curse if cursed', function() {
+  it('should only be able to lift curse if cursed', function() {
     var pirate = new Pirate('Kayla', 'captain');
 
     pirate.robShip();
