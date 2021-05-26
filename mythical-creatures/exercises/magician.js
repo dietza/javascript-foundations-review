@@ -13,12 +13,11 @@ class Magician{
   }
 
   performTrick() {
+    this.confidencePercentage += 10
     if (this.clothing === 'top hat') {
-      this.confidencePercentage += 10
       return 'PULL RABBIT FROM TOP HAT'
     }
     if (this.clothing !== 'top hat') {
-      this.confidencePercentage += 10
       return 'PULL DOVE FROM SLEEVE'
     }
   }

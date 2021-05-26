@@ -3,7 +3,7 @@ const Human = require('./human');
 class Ogre{
   constructor(ogre) {
    this.name = ogre.name,
-   this.home = ogre.abode || 'Swamp',
+   this.home = ogre.abode ?? 'Swamp',
    this.swings = 0
   }
 

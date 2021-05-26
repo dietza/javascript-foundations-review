@@ -22,7 +22,7 @@ class Centaur{
     this.crankyCounter ++
     if ((this.crankyCounter < 3) && !this.layingDown) {
       return 'Clop clop clop clop!!!';
-    } else if ((this.crankyCounter >= 3) || this.layingDown) {
+    } else {
       this.cranky = true
       return 'NO!';
     }

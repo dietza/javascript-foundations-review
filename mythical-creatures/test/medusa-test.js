@@ -1,16 +1,16 @@
-var assert = require('chai').assert;
-var Medusa = require('../exercises/medusa');
-var Person = require('../exercises/person');
-var Statue = require('../exercises/statue');
+const assert = require('chai').assert;
+const Medusa = require('../exercises/medusa');
+const Person = require('../exercises/person');
+const Statue = require('../exercises/statue');
 
 describe('Medusa', function() {
 
-  it('should be a function', function() {
+  it('should be a function', () => {
     assert.isFunction(Medusa);
   });
 
   it('should instantiate our good friend, Medusa', function() {
-    var medusa = new Medusa('Wren');
+    const medusa = new Medusa('Wren');
 
     assert.instanceOf(medusa, Medusa);
   });
@@ -18,8 +18,8 @@ describe('Medusa', function() {
   it('should have a name', function() {
     // instantiate a Medusa object with your name as an argument
     // instantiate another Medusa object with someone else's name as an argument
-    var medusa1 = new Medusa('Allison', [])
-    var medusa2 = new Medusa('Maja', [])
+    const medusa1 = new Medusa('Allison', [])
+    const medusa2 = new Medusa('Maja', [])
 
     // assert that the first medusa's name is your name
     // assert that the second medusa's name is the other name
@@ -30,7 +30,7 @@ describe('Medusa', function() {
   });
 
   it('should start with no statues', function() {
-    var medusa = new Medusa('Amy');
+    const medusa = new Medusa('Amy');
 
     assert.deepEqual(medusa.statues, []);
   });
@@ -40,9 +40,9 @@ describe('Medusa', function() {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   it('should gain a statue when staring at a person', function() {
-    var medusa = new Medusa('Eric');
-    var victim1 = new Person('Robbie');
-    var victim2 = new Person('Bob');
+    const medusa = new Medusa('Eric');
+    const victim1 = new Person('Robbie');
+    const victim2 = new Person('Bob');
 
     medusa.gazeAtVictim(victim1);
     medusa.gazeAtVictim(victim2);
@@ -55,11 +55,11 @@ describe('Medusa', function() {
   });
 
   it('should only be able to have three victims as statues', function() {
-    var medusa = new Medusa('Hannah');
-    var victim1 = new Person('Pam');
-    var victim2 = new Person('Khalid');
-    var victim3 = new Person('Scott');
-    var victim4 = new Person('Bob');
+    const medusa = new Medusa('Hannah');
+    const victim1 = new Person('Pam');
+    const victim2 = new Person('Khalid');
+    const victim3 = new Person('Scott');
+    const victim4 = new Person('Bob');
 
     medusa.gazeAtVictim(victim1);
     medusa.gazeAtVictim(victim2);
@@ -73,16 +73,16 @@ describe('Medusa', function() {
   });
 
   it('should let the first victim go free when stoning the 4th', function() {
-    var medusa = new Medusa('Hannah');
-    var victim1 = new Person('Pam');
-    var victim2 = new Person('Khalid');
-    var victim3 = new Person('Scott');
-    var victim4 = new Person('Bob');
+    const medusa = new Medusa('Hannah');
+    const victim1 = new Person('Pam');
+    const victim2 = new Person('Khalid');
+    const victim3 = new Person('Scott');
+    const victim4 = new Person('Bob');
 
-    var statue1 = new Statue('Pam');
-    var statue2 = new Statue('Khalid');
-    var statue3 = new Statue('Scott');
-    var statue4 = new Statue('Bob');
+    const statue1 = new Statue('Pam');
+    const statue2 = new Statue('Khalid');
+    const statue3 = new Statue('Scott');
+    const statue4 = new Statue('Bob');
 
     medusa.gazeAtVictim(victim1);
     medusa.gazeAtVictim(victim2);
@@ -98,34 +98,34 @@ describe('Medusa', function() {
   });
 
   it('should return a freed statue to Person form', function() {
-    var medusa = new Medusa('Hannah');
-    var victim1 = new Person('Pam');
-    var victim2 = new Person('Khalid');
-    var victim3 = new Person('Scott');
-    var victim4 = new Person('Bob');
+    const medusa = new Medusa('Hannah');
+    const victim1 = new Person('Pam');
+    const victim2 = new Person('Khalid');
+    const victim3 = new Person('Scott');
+    const victim4 = new Person('Bob');
 
     medusa.gazeAtVictim(victim1);
     medusa.gazeAtVictim(victim2);
     medusa.gazeAtVictim(victim3);
 
-    var person = medusa.gazeAtVictim(victim4);
+    const person = medusa.gazeAtVictim(victim4);
 
     assert.instanceOf(person, Person);
     assert.equal(person.name, 'Pam');
   });
 
   it('should be relieved when returned to Person form', function () {
-    var medusa = new Medusa('Pam');
-    var victim1 = new Person('Travis');
-    var victim2 = new Person('Kayla');
-    var victim3 = new Person('Leta');
-    var victim4 = new Person('Hannah');
+    const medusa = new Medusa('Pam');
+    const victim1 = new Person('Travis');
+    const victim2 = new Person('Kayla');
+    const victim3 = new Person('Leta');
+    const victim4 = new Person('Hannah');
 
     medusa.gazeAtVictim(victim1);
     medusa.gazeAtVictim(victim2);
     medusa.gazeAtVictim(victim3);
 
-    var person = medusa.gazeAtVictim(victim4);
+    const person = medusa.gazeAtVictim(victim4);
 
     assert.instanceOf(person, Person);
     assert.equal(person.name, 'Travis');
@@ -143,21 +143,21 @@ describe('Person', function() {
   });
 
   it('should instantiate our good friend, Person', function() {
-    var person = new Person();
+    const person = new Person();
 
     assert.instanceOf(person, Person);
   });
 
   it('should have a name', function() {
-    var scott = new Person('Scott');
-    var eric = new Person('Eric');
+    const scott = new Person('Scott');
+    const eric = new Person('Eric');
 
     assert.equal(scott.name, 'Scott');
     assert.equal(eric.name, 'Eric');
   });
 
   it('should feel frightened', function() {
-    var hannah = new Person('Hannah');
+    const hannah = new Person('Hannah');
 
     assert.equal(hannah.mood, 'frightened');
   });
@@ -173,14 +173,14 @@ describe('Statue', function () {
   });
 
   it('should instantiate a Statue', function () {
-    var statue = new Statue();
+    const statue = new Statue();
 
     assert.instanceOf(statue, Statue);
   });
 
   it('should have the name of its former self', function () {
-    var kayla = new Statue('Kayla');
-    var hannah = new Statue('Hannah');
+    const kayla = new Statue('Kayla');
+    const hannah = new Statue('Hannah');
 
     assert.equal(kayla.name, 'Kayla');
     assert.equal(hannah.name, 'Hannah');

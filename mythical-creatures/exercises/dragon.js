@@ -1,4 +1,3 @@
-
 class Dragon {
   constructor(name, rider) {
     this.name = name,
@@ -8,7 +7,7 @@ class Dragon {
   }
 
   greet() {
-    return 'Hi, ' + this.rider + '!'
+    return `Hi, ${this.rider}!`
   }
 
   eat() {
