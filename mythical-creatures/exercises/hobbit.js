@@ -11,10 +11,10 @@ class Hobbit{
     this.age ++
     if (this.age >= 33) {
       this.adult = true
+      if (this.age >= 101) {
+        this.old = true
+      }
     } 
-    if (this.age >= 101) {
-      this.old = true
-    }
   }
 
   getRing() {
