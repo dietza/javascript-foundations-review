@@ -3,6 +3,12 @@ const Pirate = require('../exercises/pirate');
 
 describe('Pirate', () => {
 
+  const timeTravel = (pirate, limit) => {
+    for(let i = 0; i < limit; i++) {
+      pirate.robShip();
+    }
+  }
+
   it('should instantiate our good friend, Pirate', () => {
     const dreadPirateRoberts = new Pirate();
 
@@ -87,13 +93,7 @@ describe('Pirate', () => {
   it('should be able to lift curse for 300 booty', () => {
     const pirate = new Pirate('Scott');
 
-    const timeTravel = () => {
-      for(let i = 0; i < 6; i++) {
-        pirate.robShip();
-      }
-    }
-
-    timeTravel();
+    timeTravel(pirate, 6);
 
     assert.equal(pirate.liftCurse(), 'Your curse has been lifted!');
     assert.equal(pirate.booty, 200);
@@ -113,13 +113,7 @@ describe('Pirate', () => {
   it('should be forgiven for previous robberies when the curse is lifted', () => {
     const pirate = new Pirate('Penny');
 
-    const timeTravel = () => {
-      for(let i = 0; i < 7; i++) {
-        pirate.robShip();
-      }
-    }
-
-    timeTravel();
+    timeTravel(pirate, 7);
 
     assert.equal(pirate.robberies, 7);
     assert.equal(pirate.booty, 500);
@@ -143,13 +137,8 @@ describe('Pirate', () => {
   it('should only be able to summon the Kraken when not cursed', () => {
     const pirate = new Pirate('Jack', 'captain');
 
-    const timeTravel = () => {
-      for(let i = 0; i < 6; i++) {
-        pirate.robShip();
-      }
-    }
+    timeTravel(pirate, 6);
 
-    timeTravel();
     pirate.summonKraken();
     
     assert.equal(pirate.cursed, true);
