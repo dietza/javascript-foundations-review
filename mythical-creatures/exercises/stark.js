@@ -16,7 +16,7 @@ class Stark{
     }
   }
 
-  callDirewolf(name, home) {
+  callDirewolf(name) {
     let direwolf = new Direwolf(name, this.location)
     direwolf.protect(this)
     return direwolf;

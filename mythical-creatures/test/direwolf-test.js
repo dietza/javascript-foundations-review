@@ -2,42 +2,42 @@ const assert = require('chai').assert;
 const Direwolf = require('../exercises/direwolf');
 const Stark = require('../exercises/stark');
 
-describe('Direwolf', function() {
+describe('Direwolf', () => {
 
-  it('should be a function', function() {
+  it('should be a function', () => {
     assert.isFunction(Direwolf);
   });
 
-  it('should instantiate our good friend, Direwolf', function() {
+  it('should instantiate our good friend, Direwolf', () => {
     const direwolf = new Direwolf();
     assert.isObject(direwolf);
   });
 
-  it('should have a name', function() {
+  it('should have a name', () => {
     const direwolf = new Direwolf('Nymeria');
     assert.equal(direwolf.name, 'Nymeria');
   });
 
-  it('should have a default home of Beyond the Wall', function() {
+  it('should have a default home of Beyond the Wall', () => {
     const direwolf = new Direwolf('Lady');
 
     assert.equal(direwolf.name, 'Lady');
     assert.equal(direwolf.home, 'Beyond the Wall');
   });
 
-  it('should be able to have other homes', function() {
+  it('should be able to have other homes', () => {
     const direwolf = new Direwolf('Ghost', 'Winterfell');
 
     assert.equal(direwolf.home, 'Winterfell');
   });
 
-  it('should have a default size of massive', function() {
+  it('should have a default size of massive', () => {
     const direwolf = new Direwolf('Ghost');
 
     assert.equal(direwolf.size, 'Massive');
   });
 
-  it('should be able to have another size', function() {
+  it('should be able to have another size', () => {
     const direwolf = new Direwolf('Shaggydog', 'Karhold', 'Smol Pupper');
 
     assert.equal(direwolf.name, 'Shaggydog');
@@ -45,33 +45,33 @@ describe('Direwolf', function() {
     assert.equal(direwolf.size, 'Smol Pupper');
   });
 
-  it('should instantiate our good friend, Stark', function() {
+  it('should instantiate our good friend, Stark', () => {
     const stark = new Stark({});
 
     assert.isObject(stark);
   });
 
-  it('should have a name', function() {
+  it('should have a name', () => {
     const stark = new Stark({name:'Bran'});
 
     assert.equal(stark.name, 'Bran');
   });
 
-  it('should have a default location of Winterfell', function() {
+  it('should have a default location of Winterfell', () => {
     const stark = new Stark({name:'Bran'});
 
     assert.equal(stark.name, 'Bran');
     assert.equal(stark.location, 'Winterfell');
   });
 
-  it('should be able to have different locations', function() {
+  it('should be able to have different locations', () => {
     const stark = new Stark({name: 'Eddard', area: 'King\'s Landing'})
 
     assert.equal(stark.name, 'Eddard')
     assert.equal(stark.location, 'King\'s Landing')
   })
 
-  it('should start with no Starks to protect', function() {
+  it('should start with no Starks to protect', () => {
     const direwolf = new Direwolf('Nymeria');
     const stark = new Stark({name: 'Arya'});
 
@@ -80,7 +80,7 @@ describe('Direwolf', function() {
     assert.equal(stark.location, 'Winterfell');
   });
 
-  it('should be able to protect a Stark', function() {
+  it('should be able to protect a Stark', () => {
     const direwolf = new Direwolf('Nymeria', 'Riverlands');
     const stark = new Stark({name: 'Arya', area: 'Riverlands'});
 
@@ -91,7 +91,7 @@ describe('Direwolf', function() {
     assert.equal(direwolf.starksToProtect[0].name, 'Arya');
   });
 
-  it('should only be able to protect a Stark if direwolf and Stark locations match', function() {
+  it('should only be able to protect a Stark if direwolf and Stark locations match', () => {
     const direwolf = new Direwolf('Ghost');
     const stark = new Stark({name: 'John', area: 'King\'s Landing'});
 
@@ -100,7 +100,7 @@ describe('Direwolf', function() {
     assert.deepEqual(direwolf.starksToProtect, []);
   });
 
-  it('should only be able to protect two Starks at a time', function() {
+  it('should only be able to protect two Starks at a time', () => {
     const direwolf1 = new Direwolf('Summer', 'Winterfell');
     const direwolf2 = new Direwolf('Lady', 'Winterfell');
     const stark1 = new Stark({name: 'Sansa'});
@@ -124,19 +124,19 @@ describe('Direwolf', function() {
     assert.equal(direwolf2.starksToProtect[1].name, 'Bran');
   });
 
-  it('Stark should start off unsafe', function() {
+  it('Stark should start off unsafe', () => {
     const stark = new Stark({name: 'John', area: 'Winterfell'});
 
     assert.equal(stark.safe, false);
   });
 
-  it('should know their house words', function() {
+  it('should know their house words', () => {
     const stark = new Stark ({name: 'Benjen'})
 
     assert.equal(stark.sayHouseWords(), 'Winter is Coming')
   })
 
-  it('should change house words once protected', function() {
+  it('should change house words once protected', () => {
     const direwolf = new Direwolf('Nymeria', 'Dorne');
     const stark1 = new Stark({name: 'Arya', area: 'Dorne'});
     const stark2 = new Stark({name: 'Sansa', area: 'Dorne'});
@@ -152,7 +152,7 @@ describe('Direwolf', function() {
     assert.equal(stark2.sayHouseWords(), 'Winter is Coming');
   });
 
-  it('should hunt white walkers when not protecting Starks', function() {
+  it('should hunt white walkers when not protecting Starks', () => {
     const direwolf = new Direwolf('Nymeria', 'Winterfell');
     const stark = new Stark({name: 'Sansa'});
 
@@ -162,7 +162,7 @@ describe('Direwolf', function() {
     assert.equal(direwolf.huntsWhiteWalkers, false);
   });
 
-  it('should be able to stop protecting Starks', function() {
+  it('should be able to stop protecting Starks', () => {
     const direwolf1 = new Direwolf('Summer', 'Winterfell');
     const direwolf2 = new Direwolf('Lady', 'Winterfell');
     const stark1 = new Stark({name: 'Sansa'});
@@ -179,10 +179,10 @@ describe('Direwolf', function() {
     assert.equal(stark2.safe, false);
   });
 
-  it('should be able to call their direwolf to become protected', function() {
+  it('should be able to call their direwolf to become protected', () => {
     const stark = new Stark({name: 'Arya', area: 'Riverlands'})
 
-    var direwolf = stark.callDirewolf('Nymeria', 'Winterfell')
+    const direwolf = stark.callDirewolf('Nymeria')
 
     assert.instanceOf(direwolf, Direwolf)
     assert.equal(direwolf.name, 'Nymeria')
