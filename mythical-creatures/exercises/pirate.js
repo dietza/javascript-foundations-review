@@ -9,12 +9,11 @@ class Pirate{
   }
 
   robShip() {
-    if (this.robberies < 5) {
-      this.robberies ++
+    this.robberies ++
+    if (this.robberies <= 5) {
       this.booty += 100
       return 'YAARRR!';
-    } else if (this.robberies >= 5) {
-      this.robberies ++
+    } else if (this.robberies > 5) {
       this.cursed = true
       return 'ARG! I\'ve been cursed!';
     }
