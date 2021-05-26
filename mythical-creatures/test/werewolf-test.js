@@ -1,43 +1,43 @@
-var assert = require('chai').assert;
-var Werewolf = require('../exercises/werewolf');
-var Victim = require('../exercises/victim');
+const assert = require('chai').assert;
+const Werewolf = require('../exercises/werewolf');
+const Victim = require('../exercises/victim');
 
-describe('Werewolf', function() {
+describe('Werewolf', () => {
 
-  it('should be a function', function() {
+  it('should be a function', () => {
     assert.isFunction(Werewolf);
   });
 
-  it('should instantiate our good friend, Werewolf', function() {
-    var larry = new Werewolf();
+  it('should instantiate our good friend, Werewolf', () => {
+    const larry = new Werewolf();
 
     assert.instanceOf(larry, Werewolf);
   });
 
-  it('should have a name', function() {
-    var werewolf = new Werewolf('Jeff');
-    var werewolf2 = new Werewolf('Sal');
+  it('should have a name', () => {
+    const werewolf = new Werewolf('Jeff');
+    const werewolf2 = new Werewolf('Sal');
 
     assert.equal(werewolf.name, 'Jeff');
     assert.equal(werewolf2.name, 'Sal');
   });
 
-  it('should default to human form', function() {
-    var werewolf = new Werewolf('Casey');
+  it('should default to human form', () => {
+    const werewolf = new Werewolf('Casey');
 
     assert.equal(werewolf.form, 'human');
   });
 
-  it('should not be in human form after transforming', function() {
-    var werewolf = new Werewolf('Scott');
-    var transformedWolf =  werewolf.completeTransformation();
+  it('should not be in human form after transforming', () => {
+    const werewolf = new Werewolf('Scott');
+    const transformedWolf =  werewolf.completeTransformation();
 
     assert.equal(werewolf.form, 'wolf');
     assert.equal(transformedWolf, 'Aaa-Woooo!')
   });
 
-  it('should be able to transform from wolf to human', function() {
-    var werewolf = new Werewolf('Lousia');
+  it('should be able to transform from wolf to human', () => {
+    const werewolf = new Werewolf('Lousia');
 
     assert.equal(werewolf.form, 'human');
 
@@ -45,14 +45,14 @@ describe('Werewolf', function() {
 
     assert.equal(werewolf.form, 'wolf');
 
-    var transformedWolf = werewolf.completeTransformation();
+    const transformedWolf = werewolf.completeTransformation();
 
     assert.equal(transformedWolf, 'Where are I?');
     assert.equal(werewolf.form, 'human');
   });
 
-  it('should show what form its in', function() {
-    var werewolf = new Werewolf('Lousia');
+  it('should show what form its in', () => {
+    const werewolf = new Werewolf('Lousia');
 
     assert.equal(werewolf.form, 'human');
 
@@ -66,14 +66,14 @@ describe('Werewolf', function() {
     assert.equal(werewolf.form, 'wolf');
   });
 
-  it('should start off not hungry', function() {
-    var werewolf = new Werewolf('Lousia');
+  it('should start off not hungry', () => {
+    const werewolf = new Werewolf('Lousia');
 
     assert.equal(werewolf.hungry, false);
   });
 
-  it('should become hungry after changing into werewolf form', function() {
-    var werewolf = new Werewolf('Clementine');
+  it('should become hungry after changing into werewolf form', () => {
+    const werewolf = new Werewolf('Clementine');
 
     werewolf.completeTransformation();
 
@@ -81,8 +81,8 @@ describe('Werewolf', function() {
     assert.equal(werewolf.hungry, true);
   });
 
-  it('should not be hungry after changing back to human form', function () {
-    var werewolf = new Werewolf('Pep');
+  it('should not be hungry after changing back to human form', () => {
+    const werewolf = new Werewolf('Pep');
 
     werewolf.completeTransformation();
     werewolf.completeTransformation();
@@ -95,20 +95,20 @@ describe('Werewolf', function() {
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  it('should be able to eat a victim once hungry', function () {
-    var werewolf = new Werewolf('Baby');
-    var victim = new Victim('Hannah');
+  it('should be able to eat a victim once hungry', () => {
+    const werewolf = new Werewolf('Baby');
+    const victim = new Victim('Hannah');
 
     werewolf.completeTransformation();
-    var fullWolf = werewolf.eatVictim(victim);
+    const fullWolf = werewolf.eatVictim(victim);
 
     assert.equal(victim.alive, false);
     assert.equal(fullWolf, 'Yum, Hannah was delicious.');
   });
 
-  it('should transform back to human form after eating', function() {
-    var werewolf = new Werewolf('Baby');
-    var victim = new Victim('Hannah');
+  it('should transform back to human form after eating', () => {
+    const werewolf = new Werewolf('Baby');
+    const victim = new Victim('Hannah');
 
     werewolf.completeTransformation();
     werewolf.eatVictim(victim);
@@ -116,39 +116,39 @@ describe('Werewolf', function() {
     assert.equal(werewolf.form, 'human');
   });
 
-  it('should not be able to eat a victim while in human form', function() {
-    var werewolf = new Werewolf('Scott');
-    var victim = new Victim('Baby');
+  it('should not be able to eat a victim while in human form', () => {
+    const werewolf = new Werewolf('Scott');
+    const victim = new Victim('Baby');
 
     werewolf.completeTransformation();
     werewolf.completeTransformation();
     
-    var humanWolf = werewolf.eatVictim(victim);
+    const humanWolf = werewolf.eatVictim(victim);
 
     assert.equal(humanWolf, "No way am I eating Baby, I'd like a burger!");
   });
 });
 
-describe('Victim', function() {
+describe('Victim', () => {
 
-  it('should be a function', function() {
+  it('should be a function', () => {
     assert.isFunction(Victim);
   });
 
-  it('should instantiate our good friend, Victim', function() {
-    var victim = new Victim();
+  it('should instantiate our good friend, Victim', () => {
+    const victim = new Victim();
 
     assert.instanceOf(victim, Victim);
   });
 
-  it('should have a name', function() {
-    var victim = new Victim('Leta');
+  it('should have a name', () => {
+    const victim = new Victim('Leta');
 
     assert.equal(victim.name, 'Leta');
   });
 
-  it('should be alive', function () {
-    var victim = new Victim('Leta');
+  it('should be alive', () => {
+    const victim = new Victim('Leta');
 
     assert.equal(victim.alive, true);
   });
