@@ -94,4 +94,34 @@ describe('Vampire', () => {
 
     assert.equal(vampire.drink(), 'I\'m too full to drink anymore!');
   });
+
+  it('should ask to be invited inside', () => {
+    const victor = new Vampire('Victor', 'cats&bats');
+
+    assert.equal(victor.askToComeIn(), 'May I enter your home, juicy human?')
+  });
+
+  it('should sulk if rejected', () => {
+    const thom = new Vampire('Thom', 'beetles');
+    let isRejected = true;
+
+    thom.askToComeIn();
+
+    assert.equal(thom.tryToEnter(isRejected), 'Hsssss! I will have my revenge for this disrespect!')
+  });
+
+  it('should drink at least three times if permitted inside', () => {
+    const bill = new Vampire('Bill', 'beta fish');
+    let isRejected = false;
+
+    assert.equal(bill.ouncesDrank, 0);
+    assert.equal(bill.thirsty, true);
+
+    bill.askToComeIn();
+
+    assert.equal(bill.tryToEnter(isRejected), 'Aha! I have been so thirsty, and now you are mine!')
+
+    assert.equal(bill.ouncesDrank, 30);
+    assert.equal(bill.thirsty, false);
+  });
 });

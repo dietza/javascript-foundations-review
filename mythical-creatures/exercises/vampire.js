@@ -15,6 +15,21 @@ class Vampire {
     }
   }
 
+  askToComeIn() {
+    return 'May I enter your home, juicy human?';
+  }
+
+  tryToEnter(isRejected) {
+    if (isRejected) {
+      return 'Hsssss! I will have my revenge for this disrespect!'
+    } else if (!isRejected) {
+      for (let i = 0;  i < 3; i++) {
+        this.drink()
+      }
+      return 'Aha! I have been so thirsty, and now you are mine!'
+    }
+  }
+
 }
 
 module.exports = Vampire;
