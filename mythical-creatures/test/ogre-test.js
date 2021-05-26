@@ -10,21 +10,25 @@ describe('Ogre', () => {
 
   it('should instantiate our good friend, Ogre', () => {
     const ogre = new Ogre({});
+
     assert.isObject(ogre);
   });
 
   it('should have a name', () => {
     const ogre = new Ogre({name:'Brak'});
+
     assert.equal(ogre.name, 'Brak');
   });
 
   it('should live in a Swamp by default', () => {
     const ogre = new Ogre({name: 'Brak'});
+
     assert.equal(ogre.home, 'Swamp');
   });
 
   it('does not have to live in a swamp', () => {
     const ogre = new Ogre({name: 'Brak', abode: 'The Ritz'});
+
     assert.equal(ogre.home, 'The Ritz');
   });
 
