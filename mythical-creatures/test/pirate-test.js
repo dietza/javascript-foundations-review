@@ -1,57 +1,57 @@
-var assert = require('chai').assert;
-var Pirate = require('../exercises/pirate');
+const assert = require('chai').assert;
+const Pirate = require('../exercises/pirate');
 
-describe('Pirate', function() {
+describe('Pirate', () => {
 
-  it('should instantiate our good friend, Pirate', function() {
-    var dreadPirateRoberts = new Pirate();
+  it('should instantiate our good friend, Pirate', () => {
+    const dreadPirateRoberts = new Pirate();
 
     assert.instanceOf(dreadPirateRoberts, Pirate);
   });
 
-  it('should have a name', function() {
-    var blackbeard = new Pirate('Blackbeard');
-    var chengISao = new Pirate('Cheng I Sao');
+  it('should have a name', () => {
+    const blackbeard = new Pirate('Blackbeard');
+    const chengISao = new Pirate('Cheng I Sao');
 
     assert.equal(blackbeard.name, 'Blackbeard');
     assert.equal(chengISao.name, 'Cheng I Sao');
   });
 
-  it('should be a scallywag by default', function() {
-    var pirate = new Pirate('Anne Bonny');
+  it('should be a scallywag by default', () => {
+    const pirate = new Pirate('Anne Bonny');
 
     assert.equal(pirate.name, 'Anne Bonny');
     assert.equal(pirate.job, 'scallywag');
   });
 
-  it('should be able to have another job', function() {
-    var david = new Pirate('David', 'cook');
-    var pam = new Pirate('Pam', 'captain');
+  it('should be able to have another job', () => {
+    const david = new Pirate('David', 'cook');
+    const pam = new Pirate('Pam', 'captain');
 
     assert.equal(david.job, 'cook');
     assert.equal(pam.job, 'captain');
   });
 
-  it('should not be cursed by default', function() {
-    var pirate = new Pirate('Mary Read', 'cook');
+  it('should not be cursed by default', () => {
+    const pirate = new Pirate('Mary Read', 'cook');
 
     assert.equal(pirate.cursed, false);
   });
 
-  it('should be able to rob ships', function() {
-    var pirate = new Pirate('Grace OMalley');
+  it('should be able to rob ships', () => {
+    const pirate = new Pirate('Grace OMalley');
 
     assert.equal(pirate.robShip(), 'YAARRR!');
   });
 
-  it('should start with a booty of 0', function() {
-    var pirate = new Pirate('Rachel Wall');
+  it('should start with a booty of 0', () => {
+    const pirate = new Pirate('Rachel Wall');
 
     assert.equal(pirate.booty, 0);
   });
 
-  it('should get 100 gold pieces when robbing a ship', function() {
-    var pirate = new Pirate('Hannah');
+  it('should get 100 gold pieces when robbing a ship', () => {
+    const pirate = new Pirate('Hannah');
 
     pirate.robShip();
 
@@ -62,8 +62,8 @@ describe('Pirate', function() {
     assert.equal(pirate.booty, 200);
   });
 
-  it('should get cursed after robbing 5 ships instead of getting money', function() {
-    var pirate = new Pirate('Robbie');
+  it('should get cursed after robbing 5 ships instead of getting money', () => {
+    const pirate = new Pirate('Robbie');
 
     pirate.robShip();
 
@@ -84,11 +84,11 @@ describe('Pirate', function() {
     assert.equal(pirate.robShip(), 'ARG! I\'ve been cursed!');
   });
 
-  it('should be able to lift curse for 300 booty', function() {
-    var pirate = new Pirate('Scott');
+  it('should be able to lift curse for 300 booty', () => {
+    const pirate = new Pirate('Scott');
 
-    function timeTravel() {
-      for(var i = 0; i < 6; i++) {
+    const timeTravel = () => {
+      for(let i = 0; i < 6; i++) {
         pirate.robShip();
       }
     }
@@ -98,16 +98,92 @@ describe('Pirate', function() {
     assert.equal(pirate.liftCurse(), 'Your curse has been lifted!');
     assert.equal(pirate.booty, 200);
     assert.equal(pirate.cursed, false);
-  })
+  });
 
-  it('should only be able to lift curse if cursed', function() {
-    var pirate = new Pirate('Kayla', 'captain');
+  it('should only be able to lift curse if cursed', () => {
+    const pirate = new Pirate('Kayla', 'captain');
 
     pirate.robShip();
 
     assert.equal(pirate.booty, 100);
     assert.equal(pirate.liftCurse(), 'You don\'t need to lift a curse!');
     assert.equal(pirate.booty, 100);
+  });
+
+  it('should be forgiven for previous robberies when the curse is lifted', () => {
+    const pirate = new Pirate('Penny');
+
+    const timeTravel = () => {
+      for(let i = 0; i < 7; i++) {
+        pirate.robShip();
+      }
+    }
+
+    timeTravel();
+
+    assert.equal(pirate.robberies, 7);
+    assert.equal(pirate.booty, 500);
+    assert.equal(pirate.liftCurse(), 'Your curse has been lifted!');
+    assert.equal(pirate.booty, 200);
+    assert.equal(pirate.cursed, false);
+    assert.equal(pirate.robberies, 0);
   })
 
+  it('should be able to summon the Kraken if captain', () => {
+    const lowlyScallywag = new Pirate('Gary');
+    const headHoncho = new Pirate('Pete', 'captain');
+
+    assert.equal(lowlyScallywag.summonKraken(), 'You don\'t have that kind of power!');
+    assert.equal(lowlyScallywag.summonedKraken, false);
+
+    assert.equal(headHoncho.summonKraken(), 'UNLEASH THE KRAKEN!');
+    assert.equal(headHoncho.summonedKraken, true);
+  });
+
+  it('should only be able to summon the Kraken when not cursed', () => {
+    const pirate = new Pirate('Jack', 'captain');
+
+    const timeTravel = () => {
+      for(let i = 0; i < 6; i++) {
+        pirate.robShip();
+      }
+    }
+
+    timeTravel();
+    pirate.summonKraken();
+    
+    assert.equal(pirate.cursed, true);
+    assert.equal(pirate.summonedKraken, false);
+    assert.equal(pirate.summonKraken(), 'You must lift your curse first!');
+
+    assert.equal(pirate.booty, 500);
+
+    pirate.liftCurse();
+
+    assert.equal(pirate.booty, 200);
+    assert.equal(pirate.cursed, false);
+
+    assert.equal(pirate.summonKraken(), 'UNLEASH THE KRAKEN!');
+    assert.equal(pirate.summonedKraken, true);
+  });
+
+  it('should rob five ships after summoning the Kraken', () => {
+    const pirate = new Pirate('Davy Jones', 'captain');
+
+    assert.equal(pirate.robberies, 0);
+    assert.equal(pirate.cursed, false);
+
+    pirate.summonKraken();
+
+    assert.equal(pirate.summonedKraken, true);
+    assert.equal(pirate.robberies, 5);
+    assert.equal(pirate.booty, 500);
+    assert.equal(pirate.cursed, false);
+
+    pirate.robShip();
+
+    assert.equal(pirate.robberies, 6);
+    assert.equal(pirate.booty, 500);
+    assert.equal(pirate.cursed, true);
+  });
 });
