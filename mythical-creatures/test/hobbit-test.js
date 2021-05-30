@@ -34,7 +34,7 @@ describe('Hobbit', () => {
   });
 
   function timeTravel(num, hobbit) {
-    for (const i = 0; i < num; i++) {
+    for (let i = 0; i < num; i++) {
       hobbit.celebrateBirthday();
     };
   };
